@@ -129,3 +129,15 @@ body {
   animation: slide-in-right 0.4s ease-in-out forwards;
 }
 
+/* Pulse glow animation for borders */
+@keyframes pulse-glow {
+  0%, 100% {
+    border-color: rgba(220, 38, 38, 0.2);
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.1);
+  }
+  50% {
+    border-color: rgba(220, 38, 38, 0.7);
+    box-shadow: 0 0 25px rgba(220, 38, 38, 0.5);
+  }
+}
+

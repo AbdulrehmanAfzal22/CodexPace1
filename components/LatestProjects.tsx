@@ -1,89 +1,99 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import codaImage from '../assets/projects/Coda.png';
-import dramaPopImage from '../assets/projects/DramaPop.png';
-import healthTapImage from '../assets/projects/HealthTap.png';
-import mahbubiImage from '../assets/projects/Mahbubi.png';
-import roadTrippersImage from '../assets/projects/RoadTrippers.png';
-import snoonuImage from '../assets/projects/Snoonu.png';
-import telegraphyImage from '../assets/projects/Telegraphy.png';
-import wishImage from '../assets/projects/Wish.png';
-import zedImage from '../assets/projects/Zed.png';
-import zingImage from '../assets/projects/Zing.png';
+import { useState } from "react";
+import Image from "next/image";
+import codaImage from "../assets/projects/Coda.png";
+import dramaPopImage from "../assets/projects/DramaPop.png";
+import healthTapImage from "../assets/projects/HealthTap.png";
+import mahbubiImage from "../assets/projects/Mahbubi.png";
+import roadTrippersImage from "../assets/projects/RoadTrippers.png";
+import snoonuImage from "../assets/projects/Snoonu.png";
+import telegraphyImage from "../assets/projects/Telegraphy.png";
+import wishImage from "../assets/projects/Wish.png";
+import zedImage from "../assets/projects/Zed.png";
+import zingImage from "../assets/projects/Zing.png";
 
 const projects = [
   {
-    id: 'coda',
-    name: 'Coda',
-    description: "A powerful document collaboration platform that combines documents, spreadsheets, and applications into one unified workspace. We delivered a seamless user experience with real-time collaboration, advanced automation, and intuitive design that transforms how teams work together.",
+    id: "Yunuak",
+    name: "Yunuak",
+    description:
+      "A powerful document collaboration platform that combines documents, spreadsheets, and applications into one unified workspace. We delivered a seamless user experience with real-time collaboration, advanced automation, and intuitive design that transforms how teams work together.",
     image: codaImage,
-    type: 'Productivity',
+    type: "Productivity"
   },
   {
-    id: 'drama-pop',
-    name: 'DramaPop',
-    description: "An immersive entertainment platform bringing the best of drama and pop culture to audiences worldwide. We built a streaming solution with personalized recommendations, social features, and seamless playback across all devices, creating an engaging viewing experience.",
+    id: "Forward-Thinking-Fitness",
+    name: "Forward Thinking Fitness",
+    description:
+      "An immersive entertainment platform bringing the best of drama and pop culture to audiences worldwide. We built a streaming solution with personalized recommendations, social features, and seamless playback across all devices, creating an engaging viewing experience.",
     image: dramaPopImage,
-    type: 'Entertainment',
+    type: "Entertainment"
   },
   {
-    id: 'healthtap',
-    name: 'HealthTap',
-    description: "A comprehensive telemedicine platform connecting patients with healthcare providers. We developed a robust system featuring video consultations, health records management, prescription services, and AI-powered symptom checking to make healthcare accessible and convenient.",
+    id: "Hammers-Tounges",
+    name: "Hammers & Tounges",
+    description:
+      "A comprehensive telemedicine platform connecting patients with healthcare providers. We developed a robust system featuring video consultations, health records management, prescription services, and AI-powered symptom checking to make healthcare accessible and convenient.",
     image: healthTapImage,
-    type: 'Healthcare',
+    type: "Healthcare"
   },
   {
-    id: 'mahbubi',
-    name: 'Mahbubi',
-    description: "A modern social platform designed to connect communities and foster meaningful relationships. We created an engaging user experience with real-time messaging, content sharing, and community features that bring people together in innovative ways.",
+    id: "Liberty91",
+    name: "Liberty91",
+    description:
+      "A modern social platform designed to connect communities and foster meaningful relationships. We created an engaging user experience with real-time messaging, content sharing, and community features that bring people together in innovative ways.",
     image: mahbubiImage,
-    type: 'Social',
+    type: "Social"
   },
   {
-    id: 'road-trippers',
-    name: 'RoadTrippers',
-    description: "The ultimate road trip planning platform that helps travelers discover amazing places along their route. We built an intuitive mapping system with route optimization, point-of-interest discovery, and trip planning tools that make every journey unforgettable.",
+    id: "Spectra-Solar",
+    name: "Spectra Solar",
+    description:
+      "The ultimate road trip planning platform that helps travelers discover amazing places along their route. We built an intuitive mapping system with route optimization, point-of-interest discovery, and trip planning tools that make every journey unforgettable.",
     image: roadTrippersImage,
-    type: 'Travel',
+    type: "Travel"
   },
   {
-    id: 'snoonu',
-    name: 'Snoonu',
-    description: "A comprehensive delivery and logistics platform serving multiple markets. We developed a scalable solution with real-time tracking, multi-vendor support, payment integration, and efficient routing algorithms that ensure fast and reliable deliveries.",
+    id: "Luminary-Health",
+    name: "Luminary Health",
+    description:
+      "A comprehensive delivery and logistics platform serving multiple markets. We developed a scalable solution with real-time tracking, multi-vendor support, payment integration, and efficient routing algorithms that ensure fast and reliable deliveries.",
     image: snoonuImage,
-    type: 'Logistics',
+    type: "Logistics"
   },
   {
-    id: 'telegraphy',
-    name: 'Telegraphy',
-    description: "A modern communication platform revolutionizing how teams collaborate and share information. We created a secure messaging system with end-to-end encryption, file sharing, video calls, and team management features that keep organizations connected.",
+    id: "Palplug",
+    name: "Palplug",
+    description:
+      "A modern communication platform revolutionizing how teams collaborate and share information. We created a secure messaging system with end-to-end encryption, file sharing, video calls, and team management features that keep organizations connected.",
     image: telegraphyImage,
-    type: 'Communication',
+    type: "Communication"
   },
   {
-    id: 'wish',
-    name: 'Wish',
-    description: "An innovative e-commerce platform that makes shopping fun and affordable. We built a mobile-first marketplace with personalized product discovery, social shopping features, and seamless checkout experiences that delight millions of users worldwide.",
+    id: "Dillon",
+    name: "Dillon",
+    description:
+      "An innovative e-commerce platform that makes shopping fun and affordable. We built a mobile-first marketplace with personalized product discovery, social shopping features, and seamless checkout experiences that delight millions of users worldwide.",
     image: wishImage,
-    type: 'E-commerce',
+    type: "E-commerce"
   },
   {
-    id: 'zed',
-    name: 'Zed',
-    description: "A next-generation code editor built for performance and collaboration. We developed a lightning-fast editor with real-time collaboration, AI-powered code assistance, and seamless Git integration that empowers developers to code more efficiently.",
+    id: "Low-Coder",
+    name: "Low Coder",
+    description:
+      "A next-generation code editor built for performance and collaboration. We developed a lightning-fast editor with real-time collaboration, AI-powered code assistance, and seamless Git integration that empowers developers to code more efficiently.",
     image: zedImage,
-    type: 'Developer Tools',
-  },
-  {
-    id: 'zing',
-    name: 'Zing',
-    description: "A dynamic music discovery and streaming platform that brings music lovers together. We created an immersive experience with personalized playlists, social sharing, live streaming capabilities, and high-quality audio that makes every listening session special.",
-    image: zingImage,
-    type: 'Music',
-  },
+    type: "Developer Tools"
+  }
+  // {
+  //   id: "zing",
+  //   name: "Zing",
+  //   description:
+  //     "A dynamic music discovery and streaming platform that brings music lovers together. We created an immersive experience with personalized playlists, social sharing, live streaming capabilities, and high-quality audio that makes every listening session special.",
+  //   image: zingImage,
+  //   type: "Music"
+  // }
 ];
 
 export default function LatestProjects() {
@@ -93,7 +103,7 @@ export default function LatestProjects() {
     <section className="py-32 bg-black relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-24">
-          Latest{' '}
+          Latest{" "}
           <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">
             Projects
           </span>
@@ -109,13 +119,17 @@ export default function LatestProjects() {
                   onClick={() => setSelectedProject(index)}
                   className={`w-full text-left p-4 rounded-lg transition-all duration-300 ${
                     selectedProject === index
-                      ? 'bg-red-500/20'
-                      : 'bg-transparent hover:bg-red-500/8'
+                      ? "bg-red-500/20"
+                      : "bg-transparent hover:bg-red-500/8"
                   }`}
                 >
-                  <span className={`text-sm font-medium transition-colors ${
-                    selectedProject === index ? 'text-red-400' : 'text-gray-400'
-                  }`}>
+                  <span
+                    className={`text-sm font-medium transition-colors ${
+                      selectedProject === index
+                        ? "text-red-400"
+                        : "text-gray-400"
+                    }`}
+                  >
                     {project.name}
                   </span>
                 </button>

@@ -1,123 +1,122 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 const techStack = [
-  'mern',
-  'node',
-  'RAILS',
-  'python',
-  'django',
-  'react',
-  'nextjs',
-  'vue',
-  'angular',
-  'typescript',
-  'javascript',
-  'java',
-  'php',
-  'laravel',
-  'express',
-  'mongodb',
-  'postgresql',
-  'mysql',
-  'redis',
-  'docker',
-  'kubernetes',
-  'aws',
-  'azure',
-  'gcp',
+  "django",
+  "react",
+  "nextjs",
+  "mern",
+  "node",
+  "python",
+  "docker",
+  "kubernetes",
+  "vue",
+  "angular",
+  "typescript",
+  "javascript",
+  "php",
+  "aws",
+  "azure",
+  "gcp",
+  "express",
+  "mongodb",
+  "postgresql",
+  "mysql",
+  "redis"
 ];
 
 export default function TechStack() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const itemsToShow = 6;
+  const sliderRef = useRef<HTMLDivElement>(null);
   const itemWidth = 192; // 168px width + 24px gap
 
   useEffect(() => {
-    // Auto-scroll every 3 seconds
-    intervalRef.current = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => {
-          setIsTransitioning(false);
-          return (prevIndex + 1) % techStack.length;
-        });
-      }, 700); // Match transition duration
-    }, 3000);
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    // Calculate total width of one set of items for seamless loop
+    const totalWidth = techStack.length * itemWidth;
+    let position = 0;
+    let animationId: number;
+    let lastTime = performance.now();
+    const speed = 30; // pixels per second
+
+    const animate = (currentTime: number) => {
+      const deltaTime = (currentTime - lastTime) / 1000; // Convert to seconds
+      lastTime = currentTime;
+
+      position += speed * deltaTime;
+
+      // Reset position when we've scrolled through one full set
+      if (position >= totalWidth) {
+        position = 0;
+      }
+
+      slider.style.transform = `translateX(-${position}px)`;
+
+      animationId = requestAnimationFrame(animate);
+    };
+
+    // Start animation after a short delay
+    const startDelay = setTimeout(() => {
+      animationId = requestAnimationFrame(animate);
+    }, 1500);
 
     return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
+      clearTimeout(startDelay);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
       }
     };
-  }, []);
+  }, [itemWidth]);
 
-  // Get the 6 items to display starting from currentIndex
-  const getDisplayItems = () => {
-    const items = [];
-    for (let i = 0; i < itemsToShow; i++) {
-      const index = (currentIndex + i) % techStack.length;
-      items.push(techStack[index]);
-    }
-    return items;
-  };
-
-  const displayItems = getDisplayItems();
-  const nextItem = techStack[(currentIndex + itemsToShow) % techStack.length];
+  // Create duplicated array for seamless scrolling
+  const duplicatedStack = [...techStack, ...techStack, ...techStack];
 
   return (
     <section className="py-20 bg-black relative">
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-          We Support your entire{' '}
-          <span className="bg-gradient-to-r from-red-500 to-red-400 bg-clip-text text-transparent">
-            Tech Stack
+          What solutions{" "}
+          <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">
+            Do you need
           </span>
         </h2>
-        
-        {/* Slider Container */}
-        <div className="relative w-full overflow-hidden py-2">
-          <div className="flex justify-center">
-            <div 
-              className="flex gap-6 transition-transform duration-700 ease-in-out"
+      </div>
+
+      {/* Slider Container - Full Width */}
+      <div 
+        className="relative overflow-hidden py-2"
+        style={{ 
+          width: '100vw',
+          marginLeft: 'calc(-50vw + 50%)',
+          paddingLeft: '1rem',
+          paddingRight: '1rem'
+        }}
+      >
+        <div
+          ref={sliderRef}
+          className="flex gap-6"
+          style={{
+            willChange: 'transform',
+            transform: 'translateX(0px)'
+          }}
+        >
+          {duplicatedStack.map((tech, index) => (
+            <div
+              key={`${tech}-${index}`}
+              className="flex-shrink-0 bg-black border border-red-500/50 rounded-full px-8 py-4 hover:border-red-500 hover:shadow-xl hover:shadow-red-500/30 hover:-translate-y-1 transition-all duration-300 transform"
               style={{
-                width: `${itemsToShow * itemWidth}px`,
-                transform: isTransitioning ? `translateX(-${itemWidth}px)` : 'translateX(0)'
+                width: "168px",
+                boxShadow:
+                  "0 4px 12px rgba(220, 38, 38, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
               }}
             >
-              {displayItems.map((tech, index) => (
-                <div
-                  key={`${tech}-${currentIndex}-${index}`}
-                  className="flex-shrink-0 bg-black border border-red-500/50 rounded-full px-8 py-4 hover:border-red-500 hover:shadow-xl hover:shadow-red-500/30 hover:-translate-y-1 transition-all duration-300 transform"
-                  style={{
-                    width: '168px',
-                    boxShadow: '0 4px 12px rgba(220, 38, 38, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                  }}
-                >
-                  <span className="text-white font-semibold text-lg tracking-wide whitespace-nowrap block text-center">
-                    {tech}
-                  </span>
-                </div>
-              ))}
-              {/* Next item for smooth transition */}
-              {isTransitioning && (
-                <div
-                  className="flex-shrink-0 bg-black border border-red-500/50 rounded-full px-8 py-4"
-                  style={{
-                    width: '168px',
-                    boxShadow: '0 4px 12px rgba(220, 38, 38, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                  }}
-                >
-                  <span className="text-white font-semibold text-lg tracking-wide whitespace-nowrap block text-center">
-                    {nextItem}
-                  </span>
-                </div>
-              )}
+              <span className="text-white font-semibold text-lg tracking-wide whitespace-nowrap block text-center">
+                {tech}
+              </span>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

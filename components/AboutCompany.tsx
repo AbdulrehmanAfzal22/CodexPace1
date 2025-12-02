@@ -1,11 +1,11 @@
 import Image from 'next/image';
 
 const benefits = [
-  '7+ Years Delivering Results',
-  'Flexible Engagement, Fast Start',
-  'Experts in AI, Blockchain, Cloud, QA',
-  'Transparent Pricing, No Surprises',
-  'End-to-End Ownership',
+  'Proven Track Record of Delivering Results',
+  'Flexible Engagement Models & Rapid Onboarding',
+  'Expertise in AI, Blockchain, Cloud, and Quality Assurance',
+  'Clear, Transparent Pricing with No Hidden Costs',
+  'Full-End Ownership of Projects from Start to Finish',
 ];
 
 export default function AboutCompany() {
@@ -21,7 +21,7 @@ export default function AboutCompany() {
         </h2>
 
         <div>
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-10">Why Choose CodeXpace?</h3>
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Why Partner with CodeXpace?</h3>
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Side - Benefits */}
@@ -39,13 +39,33 @@ export default function AboutCompany() {
               {/* Unique shape with decorative borders */}
               <div className="relative">
                 {/* Outer decorative border */}
-                <div className="absolute -inset-3 border-2 border-red-500/20 rounded-[2rem]"></div>
-                <div className="absolute -inset-1.5 border border-red-500/30 rounded-[1.75rem]"></div>
+                <div 
+                  className="absolute -inset-3 border-2 rounded-[2rem]"
+                  style={{
+                    borderColor: 'rgba(220, 38, 38, 0.2)',
+                    animation: 'pulse-glow 3s ease-in-out infinite',
+                    animationDelay: '0s'
+                  }}
+                ></div>
+                <div 
+                  className="absolute -inset-1.5 border rounded-[1.75rem]"
+                  style={{
+                    borderColor: 'rgba(220, 38, 38, 0.3)',
+                    animation: 'pulse-glow 2.5s ease-in-out infinite',
+                    animationDelay: '0.5s'
+                  }}
+                ></div>
                 
                 {/* Main image container with unique rounded corners */}
-                <div className="relative bg-black border-2 border-red-500/50 rounded-[1.5rem] overflow-hidden aspect-[4/3]" style={{
-                  boxShadow: '0 12px 40px rgba(220, 38, 38, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
-                }}>
+                <div 
+                  className="relative bg-black border-2 rounded-[1.5rem] overflow-hidden aspect-[4/3]" 
+                  style={{
+                    borderColor: 'rgba(220, 38, 38, 0.5)',
+                    boxShadow: '0 12px 40px rgba(220, 38, 38, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+                    animation: 'pulse-glow 2s ease-in-out infinite',
+                    animationDelay: '1s'
+                  }}
+                >
                   <Image
                     src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
                     alt="Team working with technology"

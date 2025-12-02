@@ -1,79 +1,60 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 const services = [
   {
-    icon: '⚙️',
-    title: 'Custom Software Development',
-    slug: 'custom-software-development',
-    description: 'Bespoke solutions for your unique business challenges.',
-    cta: 'Explore Custom Solutions',
+    // icon: "💻",
+    title: "Front & Backend Development",
+    slug: "front-backend-development",
+    description: "Robust architecture for seamless digital experiences.",
+    cta: "Discover Our Development Approach"
   },
   {
-    icon: '🧠',
-    title: 'AI & Machine Learning',
-    slug: 'ai-machine-learning-development',
-    description: 'Unlock business intelligence and automation.',
-    cta: 'See AI in Action',
+    // icon: "📱",
+    title: "Android & iOS App Development",
+    slug: "android-ios-app-development",
+    description: "Mobile-first solutions for any market.",
+    cta: "Start Your Mobile App Journey"
   },
   {
-    icon: '🔗',
-    title: 'Blockchain Development',
-    slug: 'blockchain-development',
-    description: 'Secure, scalable decentralized apps and platforms.',
-    cta: 'Build Your Blockchain Future',
+    // icon: "⚙️",
+    title: "Custom Software Development",
+    slug: "custom-software-development",
+    description: "Bespoke solutions for your unique business challenges.",
+    cta: "Explore Custom Solutions"
   },
   {
-    icon: '💻',
-    title: 'Front & Backend Development',
-    slug: 'front-backend-development',
-    description: 'Robust architecture for seamless digital experiences.',
-    cta: 'Discover Our Development Approach',
+    // icon: "🧠",
+    title: "AI & Machine Learning",
+    slug: "ai-machine-learning-development",
+    description: "Unlock business intelligence and automation.",
+    cta: "See AI in Action"
+  },
+
+  {
+    // icon: "☁️",
+    title: "DevOps & Cloud",
+    slug: "devops-cloud-services",
+    description: "Faster releases, stable infrastructure, lower costs.",
+    cta: "Optimize with DevOps"
   },
   {
-    icon: '📱',
-    title: 'Android & iOS App Development',
-    slug: 'android-ios-app-development',
-    description: 'Mobile-first solutions for any market.',
-    cta: 'Start Your Mobile App Journey',
+    // icon: "✅",
+    title: "Software Testing",
+    slug: "software-testing",
+    description: "QA that ensures speed, quality, and reliability.",
+    cta: "Ensure Quality"
   },
+
   {
-    icon: '☁️',
-    title: 'DevOps & Cloud',
-    slug: 'devops-cloud-services',
-    description: 'Faster releases, stable infrastructure, lower costs.',
-    cta: 'Optimize with DevOps',
-  },
-  {
-    icon: '✅',
-    title: 'Software Testing',
-    slug: 'software-testing',
-    description: 'QA that ensures speed, quality, and reliability.',
-    cta: 'Ensure Quality',
-  },
-  {
-    icon: '🔌',
-    title: 'System Integration',
-    slug: 'system-integration',
-    description: 'Connect your tools, data, and workflows seamlessly.',
-    cta: 'Integrate Systems',
-  },
-  {
-    icon: '🚀',
-    title: 'MVP Development',
-    slug: 'mvp-development',
-    description: 'Validate ideas and launch quicker, smarter.',
-    cta: 'Launch Your MVP',
-  },
-  {
-    icon: '🏢',
-    title: 'Enterprise Software Development',
-    slug: 'enterprise-software-development',
-    description: 'Big solutions for big businesses.',
-    cta: 'Scale Enterprise Solutions',
-  },
+    // icon: "🏢",
+    title: "Scalable Enterprise Software",
+    slug: "enterprise-software-development",
+    description: "Big solutions for big businesses.",
+    cta: "Scale Enterprise Solutions"
+  }
 ];
 
 export default function Services() {
@@ -96,7 +77,7 @@ export default function Services() {
         },
         {
           threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px',
+          rootMargin: "0px 0px -50px 0px"
         }
       );
 
@@ -113,10 +94,11 @@ export default function Services() {
     <section className="py-20 bg-black relative">
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-          Services That Power{' '}
+          Excellence - When it{" "}
           <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">
-            Your Growth
-          </span>
+            Comes
+          </span>{" "}
+          to
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
@@ -125,13 +107,14 @@ export default function Services() {
               ref={(el) => (cardRefs.current[index] = el)}
               className={`group bg-black border border-red-500/40 rounded-xl p-6 hover:border-red-500/70 transition-all duration-500 hover:-translate-y-1 ${
                 visibleCards.has(index)
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-8'
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
               style={{
-                transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+                transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
                 transitionDelay: `${index * 0.1}s`,
-                boxShadow: '0 2px 8px rgba(220, 38, 38, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.03)'
+                boxShadow:
+                  "0 2px 8px rgba(220, 38, 38, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.03)"
               }}
             >
               <div className="text-4xl mb-4">{service.icon}</div>
@@ -146,8 +129,18 @@ export default function Services() {
                 className="inline-flex items-center space-x-2 text-red-400 hover:text-red-300 transition-colors duration-300 text-xs font-medium"
               >
                 <span>{service.cta}</span>
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="w-3.5 h-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </Link>
             </div>

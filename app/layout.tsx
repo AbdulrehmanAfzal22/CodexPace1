@@ -5,19 +5,21 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "CodeXpace - Build. Scale",
-  description: "Custom software, AI, and automation - delivered faster, smarter, and your way.",
+  title: "CodeXpace - Bridging.",
+  description:
+    "Fast, intelligent custom software solutions, powered by AI and automation, tailored to meet your unique needs."
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>{children}</body>
+      <body className={`${inter.variable} font-sans antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
-
