@@ -3,14 +3,20 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
+// Import industry images
+import educationImage from "../assets/industry/education.png";
+import bankingImage from "../assets/industry/Banking.png";
+import ecommerceImage from "../assets/industry/E-commerce.png";
+import healthcareImage from "../assets/industry/healthcare.png";
+import travelImage from "../assets/industry/Travel.png";
+
 const industries = [
   {
     number: "01",
     title: "Education",
     description:
       "We build comprehensive learning management systems, school classroom platforms, and digital assessment tools, seamlessly integrating with ParentSquare, Canvas, Google Classroom, and more.",
-    image:
-      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop"
+    image: educationImage
   },
 
   {
@@ -18,24 +24,21 @@ const industries = [
     title: "Banking & Fintech",
     description:
       "Our expertise spans digital banking apps, payment gateways, blockchain solutions, lending platforms, and custom fintech software that drive financial innovation.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
+    image: bankingImage
   },
   {
     number: "03",
     title: "Retail & E-commerce",
     description:
       "From e-commerce websites to inventory management systems, CRM, ERP solutions, and AI-based communication tools, we power modern retail operations.",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop"
+    image: ecommerceImage
   },
   {
     number: "04",
     title: "Healthcare",
     description:
       "We develop cutting-edge healthcare solutions including EHR/EMR systems, telemedicine applications, and patient engagement platforms that improve care delivery and patient outcomes.",
-    image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop"
+    image: healthcareImage
   },
 
   {
@@ -43,8 +46,7 @@ const industries = [
     title: "Travel & Hospitality",
     description:
       "We create custom booking engines, hotel management systems, and travel applications with seamless integration to GDS, payment gateways, and airline ticketing platforms.",
-    image:
-      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=600&fit=crop"
+    image: travelImage
   }
 ];
 
@@ -98,7 +100,7 @@ export default function IndustryExpertise() {
             return (
               <div
                 key={index}
-                ref={(el) => (itemRefs.current[index] = el)}
+                ref={(el: any) => (itemRefs.current[index] = el)}
                 className={`flex flex-col ${
                   isEven ? "lg:flex-row" : "lg:flex-row-reverse"
                 } items-center gap-12`}

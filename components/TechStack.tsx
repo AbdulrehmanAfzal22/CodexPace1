@@ -1,12 +1,31 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
+
+// Import all language icons
+import djangoIcon from "../assets/languages/django.png";
+import reactIcon from "../assets/languages/react.png";
+import nodeIcon from "../assets/languages/NODE.png";
+import pythonIcon from "../assets/languages/PYTHON.png";
+import dockerIcon from "../assets/languages/dok.png";
+import kubernetesIcon from "../assets/languages/Kubernetes.png";
+import vueIcon from "../assets/languages/vue.png";
+import angularIcon from "../assets/languages/anguler.png";
+import typescriptIcon from "../assets/languages/TypeScript.png";
+import javascriptIcon from "../assets/languages/javascript.png";
+import phpIcon from "../assets/languages/php.png";
+import awsIcon from "../assets/languages/aws.png";
+import azureIcon from "../assets/languages/Azure.png";
+import gcpIcon from "../assets/languages/gcp.png";
+import mongodbIcon from "../assets/languages/mongodb.png";
+import postgresqlIcon from "../assets/languages/Postgresql.png";
+import mysqlIcon from "../assets/languages/mysql.png";
+import redisIcon from "../assets/languages/redis.png";
 
 const techStack = [
   "django",
   "react",
-  "nextjs",
-  "mern",
   "node",
   "python",
   "docker",
@@ -19,12 +38,40 @@ const techStack = [
   "aws",
   "azure",
   "gcp",
-  "express",
   "mongodb",
   "postgresql",
   "mysql",
-  "redis"
+  "redis",
+  "nextjs",
+  "express"
 ];
+
+// Map tech names to imported icons
+const getIcon = (tech: string) => {
+  const iconMap: Record<string, any> = {
+    django: djangoIcon,
+    react: reactIcon,
+    nextjs: nodeIcon, // Using node icon as fallback for nextjs (icon not available)
+    node: nodeIcon,
+    python: pythonIcon,
+    docker: dockerIcon,
+    kubernetes: kubernetesIcon,
+    vue: vueIcon,
+    angular: angularIcon,
+    typescript: typescriptIcon,
+    javascript: javascriptIcon,
+    php: phpIcon,
+    aws: awsIcon,
+    azure: azureIcon,
+    gcp: gcpIcon,
+    express: javascriptIcon, // Using javascript icon as fallback for express (icon not available)
+    mongodb: mongodbIcon,
+    postgresql: postgresqlIcon,
+    mysql: mysqlIcon,
+    redis: redisIcon,
+  };
+  return iconMap[tech.toLowerCase()] || reactIcon; // fallback to react icon
+};
 
 export default function TechStack() {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -105,16 +152,21 @@ export default function TechStack() {
           {duplicatedStack.map((tech, index) => (
             <div
               key={`${tech}-${index}`}
-              className="flex-shrink-0 bg-black border border-red-500/50 rounded-full px-8 py-4 hover:border-red-500 hover:shadow-xl hover:shadow-red-500/30 hover:-translate-y-1 transition-all duration-300 transform"
+              className="flex-shrink-0 bg-black border border-red-500/50 rounded-full px-6 py-4 hover:border-red-500 hover:shadow-xl hover:shadow-red-500/30 hover:-translate-y-1 transition-all duration-300 transform flex items-center justify-center"
               style={{
                 width: "168px",
+                height: "72px",
                 boxShadow:
                   "0 4px 12px rgba(220, 38, 38, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
               }}
             >
-              <span className="text-white font-semibold text-lg tracking-wide whitespace-nowrap block text-center">
-                {tech}
-              </span>
+              <Image
+                src={getIcon(tech)}
+                alt={tech}
+                width={40}
+                height={40}
+                className="object-contain"
+              />
             </div>
           ))}
         </div>
