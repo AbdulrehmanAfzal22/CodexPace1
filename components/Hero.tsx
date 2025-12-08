@@ -46,7 +46,7 @@ export default function Hero() {
   }, [currentText, isDeleting, currentWordIndex, words, typingSpeed]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden z-0">
       {/* Premium background with visible gradient */}
       <div className="absolute inset-0 bg-black">
         {/* Base gradient - visible but subtle (around 2%) */}

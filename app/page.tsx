@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black">
+    <main className="bg-black relative">
       <Header />
       <Hero />
       <TechStack />
@@ -20,7 +20,9 @@ export default function Home() {
       <IndustryExpertise />
       {/* <WorkWithUs /> */}
       <AboutCompany />
-      <ContactForm />
+      <div className="relative z-20">
+        <ContactForm />
+      </div>
       <Footer />
     </main>
   );
