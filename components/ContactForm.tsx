@@ -28,15 +28,18 @@ export default function ContactForm() {
   return (
     <section
       id="contact"
-      className="py-20 bg-black relative z-20 min-h-[600px]"
+      className="py-20 bg-black relative z-[30] min-h-[600px] w-full"
       style={{
         visibility: "visible",
         opacity: 1,
         display: "block",
-        position: "relative"
+        position: "relative",
+        isolation: "isolate",
+        transform: "none",
+        contain: "layout style paint"
       }}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl relative z-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl relative z-[30] w-full">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-3">
           Ready to Get{" "}
           <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">

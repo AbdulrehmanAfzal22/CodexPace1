@@ -64,7 +64,11 @@ export default function IndustryExpertise() {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              setVisibleItems((prev) => new Set([...prev, index]));
+              setVisibleItems((prev) => {
+                // Only update if not already visible to prevent unnecessary re-renders
+                if (prev.has(index)) return prev;
+                return new Set([...prev, index]);
+              });
             }
           });
         },
@@ -84,7 +88,7 @@ export default function IndustryExpertise() {
   }, []);
 
   return (
-    <section className="py-20 bg-black">
+    <section className="py-20 bg-black relative z-0 overflow-x-hidden" style={{ isolation: "isolate" }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
           Where We Exceed{" "}
@@ -108,7 +112,7 @@ export default function IndustryExpertise() {
                 <div className="flex-1">
                   <div className="relative">
                     <div
-                      className={`absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-red-600 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-xl z-10 shadow-lg shadow-red-500/30 transition-all duration-700 ${
+                      className={`absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-red-600 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-xl z-[1] shadow-lg shadow-red-500/30 transition-all duration-700 ${
                         isVisible
                           ? "opacity-100 scale-100 rotate-0"
                           : "opacity-0 scale-0 rotate-180"
@@ -117,7 +121,7 @@ export default function IndustryExpertise() {
                       {industry.number}
                     </div>
                     <div
-                      className={`bg-black border border-red-500/30 rounded-xl overflow-hidden aspect-video relative transition-all duration-700 ${
+                      className={`overflow-hidden aspect-video relative transition-all duration-700 ${
                         isVisible
                           ? "opacity-100 translate-x-0 translate-y-0"
                           : `opacity-0 ${
@@ -126,7 +130,7 @@ export default function IndustryExpertise() {
                       }`}
                       style={{
                         width: "480px", // custom width
-                        height: "260px" // custom height - reduced
+                        height: "290px" // custom height - increased
                         // objectFit: "cover"
                       }}
                     >
@@ -138,11 +142,31 @@ export default function IndustryExpertise() {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
                         style={{
                           width: "480px", // custom width
-                          height: "260px", // custom height - reduced
+                          height: "290px", // custom height - increased
                           objectFit: "cover"
                         }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            "radial-gradient(ellipse at center, transparent 0%, transparent 60%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.8) 90%, rgba(0,0,0,1) 100%)"
+                        }}
+                      ></div>
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            "linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.9) 100%)"
+                        }}
+                      ></div>
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            "linear-gradient(to left, rgba(0,0,0,0.9) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.9) 100%)"
+                        }}
+                      ></div>
                     </div>
                   </div>
                 </div>
@@ -154,9 +178,6 @@ export default function IndustryExpertise() {
                           isEven ? "translate-x-12" : "-translate-x-12"
                         } translate-y-8`
                   }`}
-                  style={{
-                    marginLeft: isEven ? -200 : 0
-                  }}
                 >
                   <h3 className="text-3xl font-bold text-white mb-4">
                     {industry.title}

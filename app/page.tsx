@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="bg-black relative">
+    <main className="bg-black relative overflow-x-hidden">
       <Header />
       <Hero />
       <TechStack />
@@ -20,7 +20,7 @@ export default function Home() {
       <IndustryExpertise />
       {/* <WorkWithUs /> */}
       <AboutCompany />
-      <div className="relative z-20">
+      <div className="relative z-[30] w-full" style={{ isolation: "isolate" }}>
         <ContactForm />
       </div>
       <Footer />
