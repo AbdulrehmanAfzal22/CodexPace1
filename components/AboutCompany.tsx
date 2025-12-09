@@ -12,19 +12,25 @@ export default function AboutCompany() {
   return (
     <section className="py-24 bg-black relative" style={{ position: 'relative', zIndex: 1, overflow: 'visible' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+        {/* <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
           About{' '}
           <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">
             Our
           </span>{' '}
           Company
-        </h2>
+        </h2> */}
 
         <div>
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Why Partner with CodeXpace?</h3>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            Why Partner with{' '}
+            <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">
+              CodeXpace
+            </span>
+            ?
+          </h2>
           
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Benefits */}
+          <div>
+            {/* Benefits */}
             <div className="space-y-4">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start space-x-3">
@@ -34,11 +40,10 @@ export default function AboutCompany() {
               ))}
             </div>
             
-            {/* Right Side - Image with Unique Shape */}
+            {/* Right Side - Image with Unique Shape - Commented Out */}
+            {/*
             <div className="relative">
-              {/* Unique shape with decorative borders */}
               <div className="relative">
-                {/* Outer decorative border */}
                 <div 
                   className="absolute -inset-3 border-2 rounded-[2rem]"
                   style={{
@@ -56,7 +61,6 @@ export default function AboutCompany() {
                   }}
                 ></div>
                 
-                {/* Main image container with unique rounded corners */}
                 <div 
                   className="relative bg-black border-2 rounded-[1.5rem] overflow-hidden aspect-[4/3]" 
                   style={{
@@ -77,6 +81,7 @@ export default function AboutCompany() {
                 </div>
               </div>
             </div>
+            */}
           </div>
         </div>
       </div>

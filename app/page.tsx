@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import TechStack from '@/components/TechStack';
@@ -10,6 +13,32 @@ import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
 
 export default function Home() {
+  useEffect(() => {
+    // Handle hash navigation for contact form
+    const handleHashScroll = () => {
+      const hash = window.location.hash;
+      if (hash === '#contact-form') {
+        // Small delay to ensure page is fully rendered
+        setTimeout(() => {
+          const contactForm = document.getElementById('contact-form');
+          if (contactForm) {
+            contactForm.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          }
+        }, 300);
+      }
+    };
+
+    // Check hash on mount
+    handleHashScroll();
+
+    // Also listen for hash changes
+    window.addEventListener('hashchange', handleHashScroll);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashScroll);
+    };
+  }, []);
+
   return (
     <main className="bg-black relative" style={{ overflowX: 'hidden', overflowY: 'visible', minHeight: '100vh', height: 'auto', width: '100%' }}>
       <Header />

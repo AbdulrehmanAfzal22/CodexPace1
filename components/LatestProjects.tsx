@@ -1,24 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import codaImage from "../assets/projects/Coda.png";
 import dramaPopImage from "../assets/projects/DramaPop.png";
-import healthTapImage from "../assets/projects/HealthTap.png";
-import mahbubiImage from "../assets/projects/Mahbubi.png";
+import HT from "../assets/projects/HT.png";
+import Liberty from "../assets/projects/Liberty.png";
 import roadTrippersImage from "../assets/projects/RoadTrippers.png";
-import snoonuImage from "../assets/projects/Snoonu.png";
+import Luminary from "../assets/projects/Luminary.png";
 import telegraphyImage from "../assets/projects/Telegraphy.png";
-import wishImage from "../assets/projects/Wish.png";
-import zedImage from "../assets/projects/Zed.png";
+import Dillion from "../assets/projects/Dillion.png";
+import coder from "../assets/projects/coder.png";
 import zingImage from "../assets/projects/Zing.png";
+import yunakImage from "../assets/projects/Yunak.png";
+import ftfImage from "../assets/projects/Ftf.png";
 
 const projects = [
   {
     id: "Yunuak",
     name: "Yunuak",
     description: `Yunuak is a next-gen enterprise solutions company empowering organizations with digital transformation, process engineering, and cloud-based business tools. Our platforms deliver workflow automation, real-time analytics, and cross-device accessibility. YUNUAK helps businesses achieve operational efficiency, scalability, and smarter decision-making.`,
-    image: codaImage,
+    image: yunakImage,
     type: "Productivity"
   },
   {
@@ -26,7 +28,7 @@ const projects = [
     name: "Forward Thinking Fitness",
     description:
       "Forward Fitness Thinking is a comprehensive wellness and fitness platform enabling users to track menstrual cycles, habits, and nutrition, while earning rewards. The platform offers personalized workout plans, real-time performance insights, and seamless multi-device integration. Users experience a fully personalized, engaging, and results-driven health journey.",
-    image: dramaPopImage,
+    image: ftfImage,
     type: "Entertainment"
   },
 
@@ -35,7 +37,7 @@ const projects = [
     name: "Liberty91",
     description:
       "Liberty91 is an AI-powered threat intelligence platform that analyzes real-time cybersecurity data tailored to your organization. It monitors news, dark-web feeds, and vulnerability reports, delivering instant alerts and actionable insights. Liberty91 enables proactive threat detection, risk reduction, and faster cybersecurity response.",
-    image: mahbubiImage,
+    image: Liberty,
     type: "Social"
   },
   {
@@ -43,7 +45,7 @@ const projects = [
     name: "Low Coder",
     description:
       "Low Coder is a modern low-code development platform that enables businesses to build applications quickly with minimal coding expertise. The platform provides drag-and-drop interfaces, automation tools, and multi-device integration. The result is faster app deployment, reduced development costs, and scalable digital solutions.",
-    image: zedImage,
+    image: coder,
     type: "Developer Tools"
   },
   {
@@ -51,7 +53,7 @@ const projects = [
     name: "Luminary Health",
     description:
       "Luminary Health is an innovative digital health platform empowering users and providers with personalized healthcare solutions and wellness management tools. We built a system offering telemedicine access, health tracking, and seamless multi-device integration. The result is accessible, data-driven, and patient-centric healthcare for better outcomes.",
-    image: snoonuImage,
+    image: Luminary,
     type: "Logistics"
   },
   {
@@ -59,7 +61,7 @@ const projects = [
     name: "Spectra Solar",
     description:
       "Spectra Solar delivers clean, renewable solar energy solutions for businesses and homes. We design and deploy scalable solar installations, integrate smart energy management systems, and monitor performance to maximize energy savings. The result is reliable solar power, reduced carbon footprint, and long-term sustainability.",
-    image: roadTrippersImage,
+    image: codaImage,
     type: "Travel"
   },
 
@@ -67,8 +69,9 @@ const projects = [
     id: "Hammers-Tounges",
     name: "Hammers & Tounges",
     description:
-      "A comprehensive telemedicine platform connecting patients with healthcare providers. We developed a robust system featuring video consultations, health records management, prescription services, and AI-powered symptom checking to make healthcare accessible and convenient.",
-    image: healthTapImage,
+      "Hammers & Tongues Auction is a digital auction platform enabling users to bid, buy, and sell products in real time with secure transactions and transparent pricing. We built a system featuring live bidding, smart inventory management, and instant notifications to enhance user engagement. With seamless mobile access and scalable architecture, the platform delivers a fast, secure, and modern auction experience.
+",
+    image: HT,
     type: "Healthcare"
   },
   {
@@ -85,16 +88,8 @@ const projects = [
     name: "Dillon",
     description:
       "Dillon Gas is a next-gen e-commerce and delivery platform that connects businesses with customers seamlessly. It offers real-time rider tracking via maps, integrated digital wallets, and secure payment options. The result is faster deliveries, smooth transactions, and enhanced customer experience.",
-    image: wishImage,
+    image: Dillion,
     type: "E-commerce"
-  },
-  {
-    id: "Low-Coder",
-    name: "Low Coder",
-    description:
-      "Low Coder is a modern low-code development platform that enables businesses to build applications quickly with minimal coding expertise. The platform provides drag-and-drop interfaces, automation tools, and multi-device integration. The result is faster app deployment, reduced development costs, and scalable digital solutions.",
-    image: zedImage,
-    type: "Developer Tools"
   }
 ];
 
@@ -103,17 +98,36 @@ const PROJECTS_PER_PAGE = 5;
 export default function LatestProjects() {
   const [selectedProject, setSelectedProject] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(true);
 
   const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE);
   const startIndex = currentPage * PROJECTS_PER_PAGE;
   const endIndex = startIndex + PROJECTS_PER_PAGE;
   const visibleProjects = projects.slice(startIndex, endIndex);
 
+  // Preload images for visible projects
+  useEffect(() => {
+    visibleProjects.forEach((project) => {
+      if (project.image) {
+        const img = new window.Image();
+        // Handle both Next.js static imports and regular URLs
+        const imageSrc =
+          typeof project.image === "string"
+            ? project.image
+            : project.image.src || (project.image as any).default?.src;
+        if (imageSrc) {
+          img.src = imageSrc;
+        }
+      }
+    });
+  }, [currentPage, visibleProjects]);
+
   const handleNextPage = () => {
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
       // Reset selected project to first item of new page
       setSelectedProject(startIndex + PROJECTS_PER_PAGE);
+      setImageLoaded(false);
     }
   };
 
@@ -122,11 +136,19 @@ export default function LatestProjects() {
       setCurrentPage(currentPage - 1);
       // Reset selected project to first item of previous page
       setSelectedProject(startIndex - PROJECTS_PER_PAGE);
+      setImageLoaded(false);
     }
   };
 
   const handleProjectSelect = (projectIndex: number) => {
-    setSelectedProject(projectIndex);
+    if (projectIndex !== selectedProject) {
+      setImageLoaded(false);
+      setSelectedProject(projectIndex);
+    }
+  };
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
   };
 
   return (
@@ -234,22 +256,32 @@ export default function LatestProjects() {
                 <p className="text-sm md:text-base font-normal text-gray-300 leading-relaxed">
                   {projects[selectedProject].description}
                 </p>
-                <button className="w-full md:w-auto px-6 py-2.5 bg-transparent border border-red-500/60 text-red-400 rounded-lg font-medium hover:bg-red-500/10 hover:border-red-500 transition-all duration-300 text-sm">
+                {/* <button className="w-full md:w-auto px-6 py-2.5 bg-transparent border border-red-500/60 text-red-400 rounded-lg font-medium hover:bg-red-500/10 hover:border-red-500 transition-all duration-300 text-sm">
                   View project
-                </button>
+                </button> */}
               </div>
 
               {/* Images horizontally aligned with text - Made smaller, aligned to top */}
               <div className="flex-shrink-0 w-full lg:w-auto self-start">
                 <div className="relative group">
-                  <div className="rounded-xl overflow-hidden aspect-[3/4] relative w-full lg:w-[350px]">
+                  <div className="rounded-xl overflow-hidden aspect-[3/4] relative w-full lg:w-[450px] bg-black/20">
                     <Image
+                      key={selectedProject}
                       src={projects[selectedProject].image}
                       alt={projects[selectedProject].name}
                       fill
-                      className="object-contain object-top transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 350px"
+                      priority
+                      onLoad={handleImageLoad}
+                      className={`object-contain object-top transition-all duration-300 group-hover:scale-105 ${
+                        imageLoaded ? "opacity-100" : "opacity-0"
+                      }`}
+                      sizes="(max-width: 768px) 100vw, 450px"
                     />
+                    {!imageLoaded && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                        <div className="w-8 h-8 border-2 border-red-500/30 border-t-red-500 rounded-full animate-spin"></div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

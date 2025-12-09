@@ -1,6 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import client1 from "../assets/Clients/1.jpeg";
+import client2 from "../assets/Clients/2.jpeg";
+import client3 from "../assets/Clients/3.jpeg";
+import client4 from "../assets/Clients/4.jpeg";
+import client5 from "../assets/Clients/5.jpeg";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -27,6 +33,7 @@ export default function ContactForm() {
 
   return (
     <section
+      id="contact-form"
       className="contact-form-section py-20 bg-black relative min-h-[600px] w-full"
       style={{
         display: 'block',
@@ -60,12 +67,18 @@ export default function ContactForm() {
           <div className="space-y-6">
             {/* Team Images */}
             <div className="flex -space-x-3">
-              {[1, 2, 3, 4, 5].map((i) => (
+              {[client1, client2, client3, client4, client5].map((clientImage, i) => (
                 <div
                   key={i}
-                  className="w-12 h-12 rounded-full border-2 border-black bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center overflow-hidden"
+                  className="w-12 h-12 rounded-full border-2 border-black overflow-hidden relative"
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-red-500/20 to-red-600/20"></div>
+                  <Image
+                    src={clientImage}
+                    alt={`Client ${i + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="48px"
+                  />
                 </div>
               ))}
             </div>

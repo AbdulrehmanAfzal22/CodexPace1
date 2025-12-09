@@ -3,27 +3,34 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const servicesList = [
   { name: "Web Development", slug: "web-development" },
   { name: "Mobile App Development", slug: "mobile-app-development" },
   { name: "Software Testing", slug: "software-testing" },
   { name: "Custom Software Development", slug: "custom-software-development" },
-  { name: "AI & Machine Learning Development", slug: "ai-machine-learning-development" },
+  {
+    name: "AI & Machine Learning Development",
+    slug: "ai-machine-learning-development"
+  },
   { name: "Devops and Cloud", slug: "devops-cloud-services" },
   { name: "SAAS Development", slug: "saas-development" },
   { name: "MVP Development", slug: "mvp-development" },
   { name: "Graphic Designing", slug: "graphic-designing" },
   { name: "UI/UX Designing", slug: "ui-ux-designing" },
   { name: "IT Consultation", slug: "it-consultation" },
-  { name: "Enterprise Mobility Solutions", slug: "enterprise-mobility-solutions" },
+  {
+    name: "Enterprise Mobility Solutions",
+    slug: "enterprise-mobility-solutions"
+  },
   { name: "Blockchain", slug: "blockchain-development" }
 ];
 
 export default function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const isActive = (path: string) => {
@@ -55,6 +62,21 @@ export default function Header() {
     };
   }, []);
 
+  const handleBookMeetingClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    if (pathname === "/") {
+      // If already on home page, scroll to contact form
+      const contactForm = document.getElementById("contact-form");
+      if (contactForm) {
+        contactForm.scrollIntoView({ behavior: "smooth", block: "end" });
+      }
+    } else {
+      // If on another page, navigate to home with hash
+      router.push("/#contact-form");
+    }
+  };
+
   return (
     <header className="relative z-50 backdrop-blur-2xl">
       <div
@@ -71,8 +93,8 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="CodeXpace Logo"
-              width={150}
-              height={40}
+              width={105}
+              height={30}
               className="object-contain"
             />
           </Link>
@@ -86,7 +108,7 @@ export default function Header() {
             >
               Home
             </Link>
-            <Link
+            {/* <Link
               href="/about"
               className={`font-semibold text-sm transition-colors ${
                 isActive("/about")
@@ -95,7 +117,7 @@ export default function Header() {
               }`}
             >
               About Us
-            </Link>
+            </Link> */}
             <div
               className="relative"
               onMouseEnter={handleMouseEnter}
@@ -145,7 +167,7 @@ export default function Header() {
                 </div>
               )}
             </div>
-            <Link
+            {/* <Link
               href="/success-stories"
               className={`font-semibold text-sm transition-colors ${
                 isActive("/success-stories")
@@ -154,8 +176,8 @@ export default function Header() {
               }`}
             >
               Case Studies
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               href="/careers"
               className={`font-semibold text-sm transition-colors ${
                 isActive("/careers")
@@ -164,12 +186,13 @@ export default function Header() {
               }`}
             >
               Careers
-            </Link>
+            </Link> */}
           </div>
 
           {/* CTA Button */}
           <Link
-            href="/contact"
+            href="/#contact-form"
+            onClick={handleBookMeetingClick}
             className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white px-5 py-2 rounded-lg font-medium text-sm transition-all flex items-center space-x-1.5 shadow-lg shadow-red-500/20 hover:shadow-xl hover:shadow-red-500/30 hover:scale-105 transform"
           >
             <span>BOOK A MEETING</span>

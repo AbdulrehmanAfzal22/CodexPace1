@@ -173,7 +173,7 @@ export default function Services() {
               <p className="text-gray-400 mb-5 leading-relaxed text-sm">
                 {service.description}
               </p>
-              <Link
+              {/* <Link
                 href={`/services/${service.slug}`}
                 className="inline-flex items-center space-x-2 text-red-400 hover:text-red-300 transition-colors duration-300 text-xs font-medium"
               >
@@ -191,7 +191,7 @@ export default function Services() {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </Link>
+              </Link> */}
             </div>
           ))}
         </div>
