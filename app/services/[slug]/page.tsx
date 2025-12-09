@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import ServiceHero from "@/components/services/ServiceHero";
 import ServiceDescription from "@/components/services/ServiceDescription";
 import ServiceCapabilities from "@/components/services/ServiceCapabilities";
+import OurProcess from "@/components/services/OurProcess";
 import ServiceFAQs from "@/components/services/ServiceFAQs";
 
 const serviceData: Record<string, any> = {
@@ -310,6 +311,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
         />
       )}
       <ServiceCapabilities items={service.capabilities} />
+      <OurProcess />
       <ServiceFAQs />
       <Footer />
     </main>
